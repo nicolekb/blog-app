@@ -54,18 +54,25 @@ function mysqli_result($res, $row, $field=0) {
 <?php while($row = mysqli_fetch_array($result)): ?>
 
 <hr>
-<?php echo $row['blogtitle'];?><br>
+<?php 
+	echo '<h2>' . $row['blogtitle'] . '</h2>';
+?><br>
+
+<div>
+	
+</div>
 
 <?php 
 	//nlb2r is for multiple lines entry
-	echo nl2br(addEmoticons(makeClickableLinks($row['blogentry'])));
+	echo '<div>' . nl2br(addEmoticons(makeClickableLinks($row['blogentry']))) . '</div>';
 ?><br>
 
 <?php 
 	$date = strtotime($row['blogtimedate']); //this fixes niggly mySQL to PHP date convertion
-	echo date("F j, Y, g:i a", $date);
+	echo '<p>' . date("F j, Y, g:i a", $date) . '</p>';
 ?><br>
 
+<a href="profile.php?bid=<?= $row['bid']?>">Learn More</a>
 <?php endwhile; ?>
 
 <?php 
